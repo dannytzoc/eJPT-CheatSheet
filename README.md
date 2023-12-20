@@ -44,12 +44,10 @@ smbmap -H 10.0.28.123 -u Administrator -p 'smbserver_771' --download 'C$\flag.tx
 nmap -sU --top-ports 25 192.126.66.3
 nmap -sV -p 445 192.126.66.3
 nmap --script smb-os-discovery.nse -p 445 192.126.66.3
-
 msfconsole
 use auxiliary/scanner/smb/smb_version
 set RHOSTS 192.126.66.3
 exploit
-
 nmap --script smb-os-discovery.nse -p 445 192.126.66.3
 nmblookup -A 192.126.66.3
 smbclient -L 192.126.66.3 -N
