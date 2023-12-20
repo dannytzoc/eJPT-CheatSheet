@@ -34,6 +34,9 @@ nmap -p445 --script smb-enum-domains --script-args smbusername=username,smbpassw
 nmap -p445 --script smb-enum-groups --script-args smbusername=username,smbpassword=password IPADDRESS
 nmap -p445 --script smb-enum-services --script-args smbusername=username,smbpassword=password IPADDRESS
 nmap -p445 --script smb-enum-shares,smb-ls --script-args smbusername=username,smbpassword=password IPADDRESS
+nmap -p445 --script smb-protocols IPADDRESS
+nmap --script smb-enum-users.nse -p445 IPADDRESS
+nmap --script smb-enum-shares.nse -p445 IPADDRESS
 ```
 
 ## SMBMAP
@@ -53,22 +56,67 @@ nmap -sU --top-ports NUMBER IP
 nmap -sV -p 445 IP
 nmap --script smb-os-discovery.nse -p 445 IPADDRESS
 ```
-METASPLOIT SMB VERSION
+## METASPLOIT SMB 
 ```
 msfconsole
 use auxiliary/scanner/smb/smb_version
 set RHOSTS IPADDRESS
 exploit
+
+msfconsole
+use auxiliary/scanner/smb/smb_enumusers
+set RHOSTS IPADDRESS
+exploit
+
+msfconsole
+use auxiliary/scanner/smb/smb2
+set RHOSTS IPADDRESS
+exploit
+
+msfconsole
+use auxiliary/scanner/smb/smb_enumshares
+set RHOSTS IPADDRESS
+exploit
 ```
+## More SMB TOOLS 
 ```
 nmblookup -A IPADDRESS
-smbclient -L IP -N
+smbclient -L IPADDRESS -N
 rpcclient -U "" -N IPADDRESS
+enum4linux -o IPADDRESS
+enum4linux -S IPADDRESS
+enum4linux -G IPADDRESS
+smbclient //IPADDRESS/folder -U username
+enum4linux -r -u "user" -p "pass" IPADDRESS
+```
+
+### RPC Client
+```
+rpcclient -U "" -N IPADDRESS
+srvinfo
+rpcclient -U "" -N IPADDRESS
+enumdomusers
+rpcclient -U "" -N IPADDESS
+lookupnames admin
+rpcclient -U "" -N IPADDRESS
+enumdomgroups
+```
+
+## SMB Dictonary 
+```
+hydra -l username -P password_file IPADDRESS smb
+
+msfconsole
+use auxiliary/scanner/smb/smb_login
+set PASS_FILE /usr/share/wordlists/metasploit/unix_passwords.txt
+set SMBUser user
+set RHOSTS IPADDRESS
+exploit
 ```
 
 ## MySQL 
 ```
-mysql -h 192.71.145.3 -u root //connect to user account
+mysql -h IPADDRESS -u root //connect to user account
 show databases; show databases
 msfconsole
 use auxiliary/scanner/mysql/mysql_schemadump
