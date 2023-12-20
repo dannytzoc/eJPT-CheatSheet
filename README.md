@@ -1,7 +1,7 @@
 ## eJPT-Cheatsheet For Exam/Studying
 
 
-#NMAP
+## NMAP
 ```
 nmap -Pn 127.0.0.1
 ```
