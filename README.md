@@ -13,5 +13,8 @@ nmap -Pn 127.0.0.1
 
 ## SMB 
 ```
-nmap -p445 --script smb-protocols IPADDRESS #protocols 
+nmap -p445 --script smb-protocols IPADDRESS #protocols
+nmap -p445 --script smb-security-mode IPADDRESS
+nmap -p445 --script smb-enum-sessions IPADDRESS
+
 ```
