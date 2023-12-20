@@ -11,48 +11,61 @@ nmap -Pn 127.0.0.1
 -T4 Fast Scan Makes a lot of noise 
 -sU udp scan 
 
-## SMB 
+## SMB Discover and Mount
+cleared stored data
 ```
-nmap -p445 --script smb-protocols IPADDRESS #protocols
+net use * /delete
+```
+mount the target folder 
+```
+net use Z: \\10.0.22.92\C$ smbserver_771 /user:administrator
+
+```
+## SMB NMAP SCRIPT
+```
+nmap -p445 --script smb-protocols IPADDRESS 
 nmap -p445 --script smb-security-mode IPADDRESS
 nmap -p445 --script smb-enum-sessions IPADDRESS
-nmap -p445 --script smb-enum-shares 10.0.17.200
-nmap -p445 --script smb-enum-shares --script-args smbusername=administrator,smbpassword=smbserver_771 10.0.17.200
-nmap -p445 --script smb-enum-users --script-args smbusername=administrator,smbpassword=smbserver_771 10.0.17.200
-nmap -p445 --script smb-server-stats --script-args smbusername=administrator,smbpassword=smbserver_771 10.0.17.2
-nmap -p445 --script smb-enum-domains --script-args smbusername=administrator,smbpassword=smbserver_771 10.0.17.200
-nmap -p445 --script smb-enum-groups --script-args smbusername=administrator,smbpassword=smbserver_771 10.0.17.200
-nmap -p445 --script smb-enum-services --script-args smbusername=administrator,smbpassword=smbserver_771 10.0.17.200
-nmap -p445 --script smb-enum-shares,smb-ls --script-args smbusername=administrator,smbpassword=smbserver_771 10.0.17.200
-
-nmap -p445 --script smb-protocols 10.0.28.123
+nmap -p445 --script smb-enum-shares IPADDRESS
+nmap -p445 --script smb-enum-shares --script-args smbusername=username,smbpassword=password IPADDRESS
+nmap -p445 --script smb-enum-users --script-args smbusername=username,smbpassword=password IPADDRESS
+nmap -p445 --script smb-server-stats --script-args smbusername=username,smbpassword=password IPADDRESS
+nmap -p445 --script smb-enum-domains --script-args smbusername=username,smbpassword=password IPADDRESS
+nmap -p445 --script smb-enum-groups --script-args smbusername=username,smbpassword=password IPADDRESS
+nmap -p445 --script smb-enum-services --script-args smbusername=username,smbpassword=password IPADDRESS
+nmap -p445 --script smb-enum-shares,smb-ls --script-args smbusername=username,smbpassword=password IPADDRESS
 ```
 
 ## SMBMAP
 ```
-smbmap -u guest -p "" -d . -H 10.0.28.123
-smbmap -u administrator -p smbserver_771 -d . -H 10.0.28.123
-smbmap -H 10.0.28.123 -u administrator -p smbserver_771 -x 'ipconfig'
-smbmap -H 10.0.28.123 -u Administrator -p 'smbserver_771' -L
-smbmap -H 10.0.28.123 -u Administrator -p 'smbserver_771' --upload '/root/backdoor' 'C$\backdoor
-smbmap -H 10.0.28.123 -u Administrator -p 'smbserver_771' -r 'C$'
-smbmap -H 10.0.28.123 -u Administrator -p 'smbserver_771' --download 'C$\flag.txt'
+smbmap -u guest -p "" -d . -H IPADDRESS
+smbmap -u administrator -p smbserver_771 -d . -H IPADDRESS
+smbmap -H IPADDRESS -u username -p password -x 'command'
+smbmap -H IPADDRESS -u username -p 'password' -L
+smbmap -H IPADDRESS -u username -p 'password' --upload 'filepath' 'C$\path'
+smbmap -H IPADDRESS -u username -p 'password' -r 'folder in list'
+smbmap -H IPADDRESS -u username -p 'password' --download 'C$\name of file'
 ```
 
-## SAMBA 
+## SAMBA Recon 
 ```
-nmap -sU --top-ports 25 192.126.66.3
-nmap -sV -p 445 192.126.66.3
-nmap --script smb-os-discovery.nse -p 445 192.126.66.3
+nmap -sU --top-ports NUMBER IP
+nmap -sV -p 445 IP
+nmap --script smb-os-discovery.nse -p 445 IPADDRESS
+```
+METASPLOIT SMB VERSION
+```
 msfconsole
 use auxiliary/scanner/smb/smb_version
-set RHOSTS 192.126.66.3
+set RHOSTS IPADDRESS
 exploit
-nmap --script smb-os-discovery.nse -p 445 192.126.66.3
-nmblookup -A 192.126.66.3
-smbclient -L 192.126.66.3 -N
-rpcclient -U "" -N 192.126.66.3
 ```
+```
+nmblookup -A IPADDRESS
+smbclient -L IP -N
+rpcclient -U "" -N IPADDRESS
+```
+
 ## MySQL 
 ```
 mysql -h 192.71.145.3 -u root //connect to user account
