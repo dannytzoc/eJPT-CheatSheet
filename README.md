@@ -10,3 +10,8 @@ nmap -Pn 127.0.0.1
 -p- scans all port 
 -T4 Fast Scan Makes a lot of noise 
 -sU udp scan 
+
+## SMB 
+```
+nmap -p445 --script smb-protocols IPADDRESS #protocols 
+```
