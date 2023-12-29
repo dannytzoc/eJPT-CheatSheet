@@ -269,7 +269,10 @@ crackmapexec smb IP -u Username -H "NTLMHASH" -x "commands"
 
 
 
-
+## SUID 
+```
+add /bin/bash to set UID
+```
 
 
 # Password Cracking
