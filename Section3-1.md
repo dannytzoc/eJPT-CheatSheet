@@ -106,7 +106,7 @@ exploit
 ```
 ```
 hydra -L username.txt -P password.txt rdp://IP -s PORTNUMBER
-xfreerdp /u:username /p:password :/v:IP:PORT
+xfreerdp /u:username /p:password /v:IP:PORT
 ```
 
 ## BLUE KEEP
