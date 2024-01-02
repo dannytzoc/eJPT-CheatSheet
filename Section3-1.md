@@ -68,7 +68,8 @@ set PATH path_name
 ```
 msfconsole 
 search smb_login
-
+/usr/share/metasploit-framework/data/wordlists/common_users.txt
+/usr/share/metasploit-framework/data/wordlists/unix_passwords.txt
 psexec.py username@IP cmd.exe
 
 msfconsole
