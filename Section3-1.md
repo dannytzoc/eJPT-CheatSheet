@@ -245,6 +245,9 @@ pgrep lsass
 migrate num
 getuid
 load kiwi
+#creds_all
+#lsa_dump_sam
+#lsa_dump_secrets
 ```
 
 ```
