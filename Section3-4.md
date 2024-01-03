@@ -43,7 +43,26 @@ nmap -sS -sV IP
 msfconsole auxiliary/scanner/smb/smb_ms17_010
 
 ```
+## Search for Publicly Available Exploits 
++ Best sources Exploit-db and Rapid7
++ Exploit DB
++ name_exploit site:exploit-db.com
++ name_exploit site:rapid7.com
 
+## Searching with Exploits with Searchsploits 
+```
+searchsploit -u
+searchsploit servicename
+searchsploit servicename serivcenumber
+searchsploit -m ID
+searchsploit -c servicename #case sensitive
+searchsploit -t vsftpd # checks in the title
+searchsploit -e "Exact Matches" # checks for the exact title
+searchsploit remote windows smb
+searchsploit webapps wordpress
+
+searchsploit -w services to show url
+```
 
 
 
