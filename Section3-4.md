@@ -64,6 +64,56 @@ searchsploit webapps wordpress
 searchsploit -w services to show url
 ```
 
+## Fixing Exploits 
+able to find exploit code on your own 
+not always trust on metasploit 
+```
+nmap -sV IP_ADDRESS
+
+```
+
+## Cross Compile 
+
++ MinGW-w64
++ GCC
++ i686-w64-mingw32-gcc file.c -o exploit
++ i686-w64-mingw32-gcc file.c -o exploit -lws2_32
+
+## Netcat fundamentals 
++
++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
