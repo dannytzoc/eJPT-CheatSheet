@@ -255,7 +255,17 @@ vncviewer.exe noirmal exe
 
 ## Obfuscating Powershell Code
 
+Invoke Obfuscation 
+```
+sudo apt-get install powershell -y
 
+pwsh
+
+Import-Module ./Invoke-Obfuscation.psd1
+
+./Invoke-Obfuscation
+SET SCIPRTPATH path of file
+```
 
 
 
