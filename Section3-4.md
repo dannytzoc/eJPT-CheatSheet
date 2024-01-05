@@ -210,7 +210,50 @@ da directory
 
 ```
 
+## Targeting PHP 
+```
+nmap -sV -sC -p 80 IP
+check it otu phpinfo.php
+lower 5.3.12 for command execution
+searchsploit -m 18836
+# add a php reverse shell if 3 dont work add 4 
+cgi_exploit
 
+show options 
+
+
+```
+
+
+## Targeting SAMBA
+```
+scanner smb_version
+
+searchsploit samba 3.0.20
+CTRL-Z background
+
+session -u 1
+sessions num
+```
+## AV Evasion with Shelter 
++ signature unique sequence of byres that uniques idneitfy malware modify the malwares bytes
++ Heuristic- ruels or decision to detrermine wheter a binary is malciosue looks for a spefici pattr within the code or program calls 
++ behavior relisitny on dientify mawlare by monitoring its behavior
++ On disk evasion - obfuscation reogrnaize code, encode to encdoe to a nw format, packing generate executable with new bianry strucuter, cypters encrypt code or payloads decrypt code in memeory
++ in mmemmroy- payloads is injected into a process
+
++ 
+  
+```
+sudo apt-get install shellter -y
+install wine
+sudo wine shellter.exe
+vncviewer.exe noirmal exe 
+```
+
+
+
+## Obfuscating Powershell Code
 
 
 
