@@ -93,9 +93,89 @@ search enum_patches
 search enum_shares
 
 poweshell.exe -Execution Bypass -File .\jaws-enum.ps1 -OutputFilename JAWS-Enum.txt
+```
+
+## Linux Local System Informnation 
++ Host name, distrubtion.kernel,cpu, disk information,installed packeges
+```
+ctrl z
+session -u 1
+meterpreter > sysinfo
+hostname
+cat /etc/issue
+cat /etc/*release
+uname -a
+uname -r 
+env # enviroemnt variabale
+lscpu #cpu info
+df -h #file system
+df -ht ext4 #c-drive
+lsblik | grep sd #storage dive
+dpkg -l # shows all install backages 
+
+```
+
+## Enumerating Users and Groups 
+
+```
+meterpreter > getuid
+whoami
+groups root
+cat /etc/passwd
+ls /home
+who
+last 
+lastlog
+```
+
+## Enumerating Network Information 
+```
+meterpreter > ifconfig
+meterpreter > netstat
+meterpreter > routes
+cat /etc/networks 
+cat /etc/hosts
+cat /etc/resolv.conf
+arp if arp not found use meterpreter
 
 
 ```
+
+## Enumerating Cron Jobs 
+
+```
+meterpreter > ps
+ps
+ps aux | grep keyword
+top
+crontab -l
+ls -al /etc/cron*
+
+cat /etc/cron*
+
+```
+
+## automating Linux Privilege escaption 
++ time efficent
++ LinEnum
+```
+meterpreter > search enum_config
+meterpreter > search enum_network
+meterpreter > search enum_system
+meterpreter > search checkvm
+ctrl + shift + alt 
+using meterpreter to insert linenum
+upload name_of_file
+
+```
+
+## Transfering Files
+ 
+
+
+
+
+
 
 ## Upgrading Shells 
 ```
@@ -114,9 +194,6 @@ env
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:sbin:/bin
 export TERM=xterm
 export SHELL=bash
-
-
-
 ```
 
 
