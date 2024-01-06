@@ -95,15 +95,29 @@ search enum_shares
 poweshell.exe -Execution Bypass -File .\jaws-enum.ps1 -OutputFilename JAWS-Enum.txt
 
 
+```
 
+## Upgrading Shells 
+```
+/bin/bash -i 
+
+cat /etc/shells
+
+/bin/sh -i
+
+python --version
+
+python -c 'import pty; pty.spawn("/bin/bash")'
+
+env
+
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:sbin:/bin
+export TERM=xterm
+export SHELL=bash
 
 
 
 ```
-
-
-
-
 
 
 
