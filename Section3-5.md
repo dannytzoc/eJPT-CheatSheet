@@ -63,10 +63,43 @@ netsh advfirewall firewall show all profiles
 + services that run on the background
 
 ```
+meterpreter > ps
+meterpreter > explorer.exe
+meterpreter > migrate PID_NUM
+net start #services
+
+wmic service list brief # services running in the background
+
+tasklist /SVC # services running with process
+
+schtasks /query /fo LIST # list all scheduele task
+schtask /query /fo / LIST -v 
+
 
 ```
 
+## Automating Windows Local Enumeration 
++ we can use view script and tools
++ JAWS is Powershell script to help penetration tester quickly idenfitifed 
+```
+meterpreter > show_mount
+background
+search win_privs
+search enum_logged_on_users
+search chckvm
+search enum_applications
+search enum_computers
+search enum_patches
+search enum_shares
 
+poweshell.exe -Execution Bypass -File .\jaws-enum.ps1 -OutputFilename JAWS-Enum.txt
+
+
+
+
+
+
+```
 
 
 
