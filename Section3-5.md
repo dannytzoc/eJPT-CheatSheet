@@ -340,3 +340,20 @@ background
 set payload windows/meterpreter/bind_tcp
 
 ```
+
+## Clearing Your Tracks Windows
++ Undo changes made to the target system
++ Store everything in TEMP
+```
+rm file
+resource path_rc script
+clearev 
+
+```
+## Clearing Tracks on  Linux 
++ 
+```
+history
+history -c 
+
+```
